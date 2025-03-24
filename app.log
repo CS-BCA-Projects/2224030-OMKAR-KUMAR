@@ -1,0 +1,21 @@
+2025-03-24 13:38:26,322 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-24 13:38:26,322 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 13:38:38,380 - INFO - 127.0.0.1 - - [24/Mar/2025 13:38:38] "OPTIONS /api/detect HTTP/1.1" 200 -
+2025-03-24 13:38:39,351 - ERROR - Error in detect_language: 'float' object has no attribute 'value'
+2025-03-24 13:38:39,351 - INFO - 127.0.0.1 - - [24/Mar/2025 13:38:39] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-03-24 13:39:09,607 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.39:5000
+2025-03-24 13:39:09,608 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 13:39:16,646 - INFO - 127.0.0.1 - - [24/Mar/2025 13:39:16] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 13:39:16,911 - INFO - 127.0.0.1 - - [24/Mar/2025 13:39:16] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 13:39:21,078 - INFO - 127.0.0.1 - - [24/Mar/2025 13:39:21] "OPTIONS /api/detect HTTP/1.1" 200 -
+2025-03-24 13:39:22,536 - ERROR - Error in detect_language: 'float' object has no attribute 'value'
+2025-03-24 13:39:22,537 - INFO - 127.0.0.1 - - [24/Mar/2025 13:39:22] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-03-24 13:39:37,941 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.39:5000
+2025-03-24 13:39:37,942 - INFO - [33mPress CTRL+C to quit[0m
