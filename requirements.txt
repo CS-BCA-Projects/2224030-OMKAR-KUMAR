@@ -1,0 +1,5 @@
+Flask==2.3.3
+flask-cors==4.0.0
+pymongo==4.6.2
+lingua-language-detector==2.0.2
+python-dateutil==2.9.0.post0
