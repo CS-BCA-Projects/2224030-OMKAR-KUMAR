@@ -19,3 +19,98 @@
  * Running on http://127.0.0.1:5000
  * Running on http://192.160.108.39:5000
 2025-03-24 13:39:37,942 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 15:47:08,432 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-03-24 15:47:08,433 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 15:47:51,338 - INFO - 127.0.0.1 - - [24/Mar/2025 15:47:51] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 15:47:51,565 - INFO - 127.0.0.1 - - [24/Mar/2025 15:47:51] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 15:47:54,881 - INFO - 127.0.0.1 - - [24/Mar/2025 15:47:54] "OPTIONS /api/detect HTTP/1.1" 200 -
+2025-03-24 15:47:55,198 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-03-24 15:47:55,198 - INFO - 127.0.0.1 - - [24/Mar/2025 15:47:55] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-03-24 15:48:04,195 - INFO - 127.0.0.1 - - [24/Mar/2025 15:48:04] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 15:48:04,498 - INFO - 127.0.0.1 - - [24/Mar/2025 15:48:04] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 15:48:07,050 - INFO - 127.0.0.1 - - [24/Mar/2025 15:48:07] "OPTIONS /api/detect HTTP/1.1" 200 -
+2025-03-24 15:48:07,366 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-03-24 15:48:07,367 - INFO - 127.0.0.1 - - [24/Mar/2025 15:48:07] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-03-24 15:49:49,468 - INFO - 127.0.0.1 - - [24/Mar/2025 15:49:49] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 15:49:49,728 - INFO - 127.0.0.1 - - [24/Mar/2025 15:49:49] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 15:49:51,836 - INFO - 127.0.0.1 - - [24/Mar/2025 15:49:51] "OPTIONS /api/detect HTTP/1.1" 200 -
+2025-03-24 15:49:52,148 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-03-24 15:49:52,148 - INFO - 127.0.0.1 - - [24/Mar/2025 15:49:52] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-03-24 15:49:58,831 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-03-24 15:49:58,831 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 15:49:58,838 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-24 15:50:00,480 - WARNING -  * Debugger is active!
+2025-03-24 15:50:00,481 - INFO -  * Debugger PIN: 862-021-660
+2025-03-24 15:50:03,755 - INFO - 127.0.0.1 - - [24/Mar/2025 15:50:03] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 15:50:04,010 - INFO - 127.0.0.1 - - [24/Mar/2025 15:50:04] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 15:50:05,042 - INFO - 127.0.0.1 - - [24/Mar/2025 15:50:05] "OPTIONS /api/detect HTTP/1.1" 200 -
+2025-03-24 15:50:05,371 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-03-24 15:50:05,371 - INFO - 127.0.0.1 - - [24/Mar/2025 15:50:05] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-03-24 15:52:33,244 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-03-24 15:52:33,244 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 15:52:33,253 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-24 15:52:34,871 - WARNING -  * Debugger is active!
+2025-03-24 15:52:34,872 - INFO -  * Debugger PIN: 862-021-660
+2025-03-24 15:52:49,487 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-24 15:52:49,488 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 15:53:48,014 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-24 15:53:48,014 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 15:56:54,196 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-03-24 15:56:54,196 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 15:58:34,550 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-03-24 15:58:34,551 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 15:58:34,557 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-24 15:58:36,190 - WARNING -  * Debugger is active!
+2025-03-24 15:58:36,192 - INFO -  * Debugger PIN: 862-021-660
+2025-03-24 15:58:40,759 - INFO - 127.0.0.1 - - [24/Mar/2025 15:58:40] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 15:58:41,034 - INFO - 127.0.0.1 - - [24/Mar/2025 15:58:41] "GET /api/history HTTP/1.1" 200 -
+2025-03-24 15:58:41,803 - INFO - 127.0.0.1 - - [24/Mar/2025 15:58:41] "OPTIONS /api/detect HTTP/1.1" 200 -
+2025-03-24 15:58:42,135 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-03-24 15:58:42,135 - INFO - 127.0.0.1 - - [24/Mar/2025 15:58:42] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-03-24 15:58:45,690 - INFO - 127.0.0.1 - - [24/Mar/2025 15:58:45] "OPTIONS /api/history HTTP/1.1" 200 -
+2025-03-24 15:58:46,006 - INFO - History cleared by request
+2025-03-24 15:58:46,006 - INFO - 127.0.0.1 - - [24/Mar/2025 15:58:46] "DELETE /api/history HTTP/1.1" 200 -
+2025-03-24 15:58:53,805 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-03-24 15:58:53,805 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 15:58:53,811 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-24 15:58:55,473 - WARNING -  * Debugger is active!
+2025-03-24 15:58:55,474 - INFO -  * Debugger PIN: 862-021-660
+2025-03-24 15:59:05,344 - INFO -  * Detected change in 'D:\\omkar\\language-main\\app.py', reloading
+2025-03-24 15:59:05,345 - INFO -  * Detected change in 'D:\\omkar\\language-main\\app.py', reloading
+2025-03-24 15:59:05,345 - INFO -  * Detected change in 'D:\\omkar\\language-main\\app.py', reloading
+2025-03-24 15:59:05,734 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-24 15:59:12,551 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-03-24 15:59:12,551 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 15:59:59,733 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-03-24 15:59:59,734 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-24 16:00:45,615 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-03-24 16:00:45,615 - INFO - [33mPress CTRL+C to quit[0m
