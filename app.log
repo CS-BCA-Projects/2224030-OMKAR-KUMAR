@@ -240,3 +240,20 @@ NameError: name 'db_lock' is not defined
 2025-04-04 16:10:51,862 - INFO - Language detected: FINNISH (Confidence: 0.77)
 2025-04-04 16:10:51,863 - INFO - 127.0.0.1 - - [04/Apr/2025 16:10:51] "POST /api/detect HTTP/1.1" 200 -
 2025-04-04 16:10:52,177 - INFO - 127.0.0.1 - - [04/Apr/2025 16:10:52] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:15:03,796 - INFO - 127.0.0.1 - - [04/Apr/2025 16:15:03] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:15:04,036 - INFO - 127.0.0.1 - - [04/Apr/2025 16:15:04] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:15:07,787 - INFO - 127.0.0.1 - - [04/Apr/2025 16:15:07] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:15:08,097 - INFO - 127.0.0.1 - - [04/Apr/2025 16:15:08] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:15:09,295 - INFO - 127.0.0.1 - - [04/Apr/2025 16:15:09] "OPTIONS /api/history HTTP/1.1" 200 -
+2025-04-04 16:15:09,611 - INFO - History cleared by request
+2025-04-04 16:15:09,613 - INFO - 127.0.0.1 - - [04/Apr/2025 16:15:09] "DELETE /api/history HTTP/1.1" 200 -
+2025-04-04 16:15:12,436 - INFO - Language detected: ITALIAN (Confidence: 1.00)
+2025-04-04 16:15:12,437 - INFO - 127.0.0.1 - - [04/Apr/2025 16:15:12] "POST /api/detect HTTP/1.1" 200 -
+2025-04-04 16:15:12,754 - INFO - 127.0.0.1 - - [04/Apr/2025 16:15:12] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:15:18,428 - INFO - Language detected: CHINESE (Confidence: 1.00)
+2025-04-04 16:15:18,429 - INFO - 127.0.0.1 - - [04/Apr/2025 16:15:18] "POST /api/detect HTTP/1.1" 200 -
+2025-04-04 16:15:18,741 - INFO - 127.0.0.1 - - [04/Apr/2025 16:15:18] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:21:16,775 - INFO - 127.0.0.1 - - [04/Apr/2025 16:21:16] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:21:39,681 - INFO - Language detected: RUSSIAN (Confidence: 1.00)
+2025-04-04 16:21:39,682 - INFO - 127.0.0.1 - - [04/Apr/2025 16:21:39] "POST /api/detect HTTP/1.1" 200 -
+2025-04-04 16:21:39,992 - INFO - 127.0.0.1 - - [04/Apr/2025 16:21:39] "GET /api/history HTTP/1.1" 200 -
