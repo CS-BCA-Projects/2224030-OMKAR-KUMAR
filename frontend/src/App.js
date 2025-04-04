@@ -11,6 +11,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedExample, setSelectedExample] = useState('English');
   const [error, setError] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 768);
 
   const EXAMPLE_TEXTS = {
     English: "Hello! How are you doing today? I hope you're having a wonderful day filled with joy and happiness.",
@@ -34,6 +35,11 @@ const App = () => {
 
   useEffect(() => {
     fetchHistory();
+    const handleResize = () => {
+      setIsSidebarOpen(window.innerWidth > 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const fetchHistory = async () => {
@@ -41,7 +47,7 @@ const App = () => {
       const response = await fetch('http://localhost:5000/api/history');
       const data = await response.json();
       if (response.ok) {
-        setHistory(data);
+        setHistory(data.history || []);
       } else {
         setError(data.error || 'Failed to fetch history');
       }
@@ -64,7 +70,7 @@ const App = () => {
       if (response.ok) {
         setDetectedLanguage(data.detected_language);
         setConfidence(data.confidence);
-        setConfidences(data.confidences);
+        setConfidences(data.confidences || []);
         fetchHistory();
       } else {
         setError(data.error || 'Detection failed');
@@ -102,88 +108,180 @@ const App = () => {
     setTextInput(EXAMPLE_TEXTS[selectedExample]);
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="app">
-      <div className="sidebar">
-        <h2>📊 Detection History</h2>
-        <button onClick={clearHistory} className="clear-button">Clear History</button>
-        {history.length > 0 ? (
-          <div className="history-table">
-            {history.map((item, index) => (
-              <div key={index} className="history-item">
-                <div>{new Date(item.timestamp).toLocaleString()}</div>
-                <div>{item.text}</div>
-                <div>{item.detected_language}</div>
-                <div>{(item.confidence * 100).toFixed(2)}%</div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p>No detection history yet</p>
-        )}
+      <button className="sidebar-toggle" onClick={toggleSidebar}>
+        {isSidebarOpen ? '◄' : '►'}
+      </button>
+
+      <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
+        <div className="sidebar-content">
+          <h2>📊 Detection History</h2>
+          <button onClick={clearHistory} className="clear-button">
+            🗑️ Clear History
+          </button>
+          {history.length > 0 ? (
+            <div className="history-scroll">
+              {history.map((item, index) => (
+                <div key={index} className="history-item">
+                  <div className="history-timestamp">
+                    {new Date(item.timestamp).toLocaleString()}
+                  </div>
+                  <div className="history-text">{item.text_preview}</div>
+                  <div className="history-language">
+                    <span className="language-tag">{item.detected_language}</span>
+                    <span className="confidence-badge">
+                      {(item.confidence * 100).toFixed(2)}%
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="empty-history">
+              <p>No detection history yet</p>
+              <div className="empty-icon">📭</div>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="main-content">
-        <h1>🌎 Advanced Language Detection</h1>
-        
-        {error && <div className="error">{error}</div>}
+        <div className="header">
+          <h1>
+            <span className="icon-globe">🌎</span>
+            <span className="title-text">
+              <span className="title-main">Advanced Language Detection</span>
+              <span className="title-sub">Powered by AI</span>
+            </span>
+          </h1>
+        </div>
+
+        {error && (
+          <div className="error-message animate-shake">
+            <span className="error-icon">⚠️</span>
+            {error}
+          </div>
+        )}
 
         <div className="content-grid">
           <div className="input-section">
-            <textarea
-              value={textInput}
-              onChange={(e) => setTextInput(e.target.value)}
-              placeholder="Enter text to detect language"
-              rows={6}
-            />
-            {textInput.trim().length < 20 && (
-              <p className="warning">Please enter at least 20 characters for accurate detection</p>
-            )}
+            <div className="textarea-container">
+              <textarea
+                value={textInput}
+                onChange={(e) => setTextInput(e.target.value)}
+                placeholder="Enter at least 20 characters to detect language..."
+                rows={6}
+                className={textInput.trim().length >= 20 ? 'valid' : ''}
+              />
+              <div className="character-count">
+                {textInput.length}/20 characters
+                {textInput.trim().length < 20 && (
+                  <span className="warning-icon">⚠️</span>
+                )}
+              </div>
+            </div>
             <button
               onClick={handleDetect}
               disabled={textInput.trim().length < 20 || isLoading}
-              className="detect-button"
+              className={`detect-button ${isLoading ? 'loading' : ''}`}
             >
-              {isLoading ? 'Analyzing...' : '🔍 Detect Language'}
+              {isLoading ? (
+                <>
+                  <span className="spinner"></span>
+                  Analyzing...
+                </>
+              ) : (
+                <>
+                  <span className="icon">🔍</span>
+                  Detect Language
+                </>
+              )}
             </button>
           </div>
 
           <div className="examples-section">
-            <h3>📝 Example Texts</h3>
-            <select
-              value={selectedExample}
-              onChange={(e) => setSelectedExample(e.target.value)}
-            >
-              {Object.keys(EXAMPLE_TEXTS).map((lang) => (
-                <option key={lang} value={lang}>{lang}</option>
-              ))}
-            </select>
-            <button onClick={handleLoadExample}>Load Example</button>
+            <div className="examples-card">
+              <h3>
+                <span className="icon">📝</span> Example Texts
+              </h3>
+              <div className="example-controls">
+                <select
+                  value={selectedExample}
+                  onChange={(e) => setSelectedExample(e.target.value)}
+                  className="language-select"
+                >
+                  {Object.keys(EXAMPLE_TEXTS).map((lang) => (
+                    <option key={lang} value={lang}>
+                      {lang}
+                    </option>
+                  ))}
+                </select>
+                <button onClick={handleLoadExample} className="load-example">
+                  <span className="icon">↩️</span>
+                  Load Example
+                </button>
+              </div>
+              <div className="example-preview">
+                {EXAMPLE_TEXTS[selectedExample].substring(0, 100)}...
+              </div>
+            </div>
           </div>
         </div>
 
         {detectedLanguage && (
-          <div className="results">
-            <h3>📊 Detection Results</h3>
+          <div className="results animate-fade-in">
+            <h3>
+              <span className="icon">📊</span> Detection Results
+            </h3>
             <div className="result-grid">
-              <div className="result-box">
+              <div className="result-card primary">
+                <div className="result-icon">🌐</div>
                 <h4>Detected Language</h4>
-                <p className="language-confidence">{detectedLanguage}</p>
+                <p className="language-result">{detectedLanguage}</p>
               </div>
-              <div className="result-box">
+              <div className="result-card secondary">
+                <div className="result-icon">📈</div>
                 <h4>Confidence Score</h4>
-                <p className="language-confidence">{(confidence * 100).toFixed(2)}%</p>
+                <p className="confidence-score">
+                  {(confidence * 100).toFixed(2)}%
+                </p>
+                <div className="confidence-bar">
+                  <div
+                    className="confidence-fill"
+                    style={{ width: `${confidence * 100}%` }}
+                  ></div>
+                </div>
               </div>
             </div>
 
-            <h3>🎯 Top Language Matches</h3>
+            <h3>
+              <span className="icon">🎯</span> Top Language Matches
+            </h3>
             <div className="confidence-list">
-              {confidences.map(([lang, conf], index) => (
+              {confidences.map((item, index) => (
                 <div
                   key={index}
-                  className={`confidence-item ${lang === detectedLanguage ? 'highlight' : ''}`}
+                  className={`confidence-item ${
+                    item.language === detectedLanguage ? 'highlight' : ''
+                  }`}
                 >
-                  <strong>{lang}</strong>: {(conf * 100).toFixed(2)}%
+                  <div className="language-name">
+                    <strong>{item.language}</strong>
+                  </div>
+                  <div className="confidence-meter">
+                    <div
+                      className="meter-fill"
+                      style={{ width: `${item.confidence * 100}%` }}
+                    ></div>
+                    <span className="confidence-percent">
+                      {(item.confidence * 100).toFixed(2)}%
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -191,10 +289,15 @@ const App = () => {
         )}
 
         <details className="supported-languages">
-          <summary>🌍 Supported Languages</summary>
+          <summary>
+            <span className="icon">🌍</span> Supported Languages
+          </summary>
           <div className="language-grid">
             {SUPPORTED_LANGUAGES.map((lang) => (
-              <div key={lang}>- {lang}</div>
+              <div key={lang} className="language-item">
+                <span className="language-dot"></span>
+                {lang}
+              </div>
             ))}
           </div>
         </details>

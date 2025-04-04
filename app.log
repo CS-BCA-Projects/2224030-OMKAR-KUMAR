@@ -114,3 +114,129 @@
  * Running on http://127.0.0.1:5000
  * Running on http://192.160.108.137:5000
 2025-03-24 16:00:45,615 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-04 15:38:42,398 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-04-04 15:38:42,398 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-04 15:44:19,205 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-04-04 15:44:19,205 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-04 15:44:23,143 - INFO - 127.0.0.1 - - [04/Apr/2025 15:44:23] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-04 15:44:23,183 - INFO - 127.0.0.1 - - [04/Apr/2025 15:44:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-04 15:44:27,396 - INFO - 192.160.108.137 - - [04/Apr/2025 15:44:27] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-04 15:44:27,420 - INFO - 192.160.108.137 - - [04/Apr/2025 15:44:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-04 15:44:45,195 - INFO - 127.0.0.1 - - [04/Apr/2025 15:44:45] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-04 15:44:49,609 - INFO - 127.0.0.1 - - [04/Apr/2025 15:44:49] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:44:49,868 - INFO - 127.0.0.1 - - [04/Apr/2025 15:44:49] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:45:00,202 - INFO - 127.0.0.1 - - [04/Apr/2025 15:45:00] "OPTIONS /api/detect HTTP/1.1" 200 -
+2025-04-04 15:45:00,534 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+Traceback (most recent call last):
+  File "D:\omkar\language-main\app.py", line 169, in detect_language
+    main_confidence = next((conf.value for lang, conf in sorted_confidences if lang == detected_lang), 0)
+  File "D:\omkar\language-main\app.py", line 169, in <genexpr>
+    main_confidence = next((conf.value for lang, conf in sorted_confidences if lang == detected_lang), 0)
+TypeError: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-04-04 15:45:00,544 - INFO - 127.0.0.1 - - [04/Apr/2025 15:45:00] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-04-04 15:45:20,198 - INFO - 127.0.0.1 - - [04/Apr/2025 15:45:20] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:45:20,512 - INFO - 127.0.0.1 - - [04/Apr/2025 15:45:20] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:45:24,267 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+Traceback (most recent call last):
+  File "D:\omkar\language-main\app.py", line 169, in detect_language
+    main_confidence = next((conf.value for lang, conf in sorted_confidences if lang == detected_lang), 0)
+  File "D:\omkar\language-main\app.py", line 169, in <genexpr>
+    main_confidence = next((conf.value for lang, conf in sorted_confidences if lang == detected_lang), 0)
+TypeError: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-04-04 15:45:24,284 - INFO - 127.0.0.1 - - [04/Apr/2025 15:45:24] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-04-04 15:45:35,864 - INFO - 127.0.0.1 - - [04/Apr/2025 15:45:35] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:45:36,121 - INFO - 127.0.0.1 - - [04/Apr/2025 15:45:36] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:45:39,864 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+Traceback (most recent call last):
+  File "D:\omkar\language-main\app.py", line 169, in detect_language
+    {'_id': ObjectId(id)},
+  File "D:\omkar\language-main\app.py", line 169, in <genexpr>
+    {'_id': ObjectId(id)},
+TypeError: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-04-04 15:45:39,876 - INFO - 127.0.0.1 - - [04/Apr/2025 15:45:39] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-04-04 15:47:28,973 - INFO - 127.0.0.1 - - [04/Apr/2025 15:47:28] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:47:29,234 - INFO - 127.0.0.1 - - [04/Apr/2025 15:47:29] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:47:31,736 - INFO - 127.0.0.1 - - [04/Apr/2025 15:47:31] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:47:32,061 - INFO - 127.0.0.1 - - [04/Apr/2025 15:47:32] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:47:34,627 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+Traceback (most recent call last):
+  File "D:\omkar\language-main\app.py", line 169, in detect_language
+    history = list(history_collection.find(
+  File "D:\omkar\language-main\app.py", line 169, in <genexpr>
+    history = list(history_collection.find(
+TypeError: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-04-04 15:47:34,640 - INFO - 127.0.0.1 - - [04/Apr/2025 15:47:34] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-04-04 15:47:39,698 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+Traceback (most recent call last):
+  File "D:\omkar\language-main\app.py", line 169, in detect_language
+    history = list(history_collection.find(
+  File "D:\omkar\language-main\app.py", line 169, in <genexpr>
+    history = list(history_collection.find(
+TypeError: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-04-04 15:47:39,700 - INFO - 127.0.0.1 - - [04/Apr/2025 15:47:39] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-04-04 15:54:46,183 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-04-04 15:54:46,183 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-04 15:59:12,554 - INFO - MongoDB connection established
+2025-04-04 15:59:13,895 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-04-04 15:59:13,895 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-04 15:59:15,148 - INFO - 127.0.0.1 - - [04/Apr/2025 15:59:15] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-04 15:59:18,914 - INFO - 127.0.0.1 - - [04/Apr/2025 15:59:18] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:59:19,176 - INFO - 127.0.0.1 - - [04/Apr/2025 15:59:19] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 15:59:27,609 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-04-04 15:59:27,610 - INFO - 127.0.0.1 - - [04/Apr/2025 15:59:27] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-04-04 16:02:05,172 - INFO - 127.0.0.1 - - [04/Apr/2025 16:02:05] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:02:05,433 - INFO - 127.0.0.1 - - [04/Apr/2025 16:02:05] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:02:07,844 - ERROR - Error in detect_language: cannot unpack non-iterable builtins.ConfidenceValue object
+2025-04-04 16:02:07,845 - INFO - 127.0.0.1 - - [04/Apr/2025 16:02:07] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-04-04 16:03:48,054 - INFO - MongoDB connection established
+2025-04-04 16:03:49,397 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-04-04 16:03:49,398 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-04 16:03:53,213 - INFO - 127.0.0.1 - - [04/Apr/2025 16:03:53] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-04 16:03:56,640 - INFO - 127.0.0.1 - - [04/Apr/2025 16:03:56] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:03:56,905 - INFO - 127.0.0.1 - - [04/Apr/2025 16:03:56] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:04:15,691 - ERROR - Error in detect_language: name 'db_lock' is not defined
+Traceback (most recent call last):
+  File "D:\omkar\language-main\app.py", line 109, in detect_language
+    with db_lock:
+NameError: name 'db_lock' is not defined
+2025-04-04 16:04:15,692 - INFO - 127.0.0.1 - - [04/Apr/2025 16:04:15] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-04-04 16:05:04,393 - INFO - 192.160.108.137 - - [04/Apr/2025 16:05:04] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-04 16:05:07,272 - INFO - 127.0.0.1 - - [04/Apr/2025 16:05:07] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:05:07,537 - INFO - 127.0.0.1 - - [04/Apr/2025 16:05:07] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:05:08,812 - ERROR - Error in detect_language: name 'db_lock' is not defined
+Traceback (most recent call last):
+  File "D:\omkar\language-main\app.py", line 109, in detect_language
+    with db_lock:
+NameError: name 'db_lock' is not defined
+2025-04-04 16:05:08,813 - INFO - 127.0.0.1 - - [04/Apr/2025 16:05:08] "[35m[1mPOST /api/detect HTTP/1.1[0m" 500 -
+2025-04-04 16:10:13,640 - INFO - MongoDB connection established
+2025-04-04 16:10:14,974 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.160.108.137:5000
+2025-04-04 16:10:14,974 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-04 16:10:18,309 - INFO - 127.0.0.1 - - [04/Apr/2025 16:10:18] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:10:18,574 - INFO - 127.0.0.1 - - [04/Apr/2025 16:10:18] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:10:20,538 - INFO - Language detected: ITALIAN (Confidence: 1.00)
+2025-04-04 16:10:20,539 - INFO - 127.0.0.1 - - [04/Apr/2025 16:10:20] "POST /api/detect HTTP/1.1" 200 -
+2025-04-04 16:10:20,862 - INFO - 127.0.0.1 - - [04/Apr/2025 16:10:20] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:10:46,631 - INFO - 127.0.0.1 - - [04/Apr/2025 16:10:46] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:10:46,945 - INFO - 127.0.0.1 - - [04/Apr/2025 16:10:46] "GET /api/history HTTP/1.1" 200 -
+2025-04-04 16:10:51,862 - INFO - Language detected: FINNISH (Confidence: 0.77)
+2025-04-04 16:10:51,863 - INFO - 127.0.0.1 - - [04/Apr/2025 16:10:51] "POST /api/detect HTTP/1.1" 200 -
+2025-04-04 16:10:52,177 - INFO - 127.0.0.1 - - [04/Apr/2025 16:10:52] "GET /api/history HTTP/1.1" 200 -

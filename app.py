@@ -8,28 +8,37 @@ import logging
 from bson import ObjectId
 import re
 from threading import Lock
+import sys
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})  # More specific CORS config
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-# Configure logging
+# Configure logging to both file and console
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
-    filename='app.log'
+    handlers=[
+        logging.FileHandler('app.log'),
+        logging.StreamHandler(sys.stdout)
+    ]
 )
 logger = logging.getLogger(__name__)
 
-# MongoDB Configuration with connection pooling
-MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost:27017/lange')
-client = MongoClient(MONGO_URI, maxPoolSize=50, connectTimeoutMS=5000)
-db = client['lange']
-history_collection = db['detection_history']
-confidence_collection = db['confidence_scores']
-stats_collection = db['detection_stats']
-
 # Thread lock for database operations
 db_lock = Lock()
+
+# MongoDB Configuration
+try:
+    MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost:27017/lange')
+    client = MongoClient(MONGO_URI, maxPoolSize=50, connectTimeoutMS=5000)
+    db = client['lange']
+    history_collection = db['detection_history']
+    confidence_collection = db['confidence_scores']
+    stats_collection = db['detection_stats']
+    logger.info("MongoDB connection established")
+except Exception as e:
+    logger.error(f"MongoDB connection failed: {str(e)}")
+    raise
 
 # Language Detector Setup with more languages
 languages = {
@@ -61,23 +70,47 @@ def sanitize_text(text):
 @app.route('/api/detect', methods=['POST'])
 def detect_language():
     try:
+        # Ensure JSON data is present
+        if not request.is_json:
+            return jsonify({'error': 'Request must be JSON'}), 400
         data = request.get_json()
         text = sanitize_text(data.get('text', ''))
         
-        if len(text) < 10:  # Reduced minimum length
+        if len(text) < 10:
             return jsonify({'error': 'Text must be at least 10 characters'}), 400
 
+        # Detect the language
         detected_lang = detector.detect_language_of(text)
         if not detected_lang:
             return jsonify({'error': 'Could not detect language'}), 400
 
-        confidences = detector.compute_language_confidence_values(text)
-        sorted_confidences = sorted(confidences, key=lambda x: x.value, reverse=True)[:5]  # Top 5 only
+        # Get confidence values
+        confidence_values = detector.compute_language_confidence_values(text)
         
-        main_confidence = next((conf.value for lang, conf in sorted_confidences if lang == detected_lang), 0)
+        # Process confidence values
+        processed_confidences = [
+            {'language': cv.language.name, 'confidence': float(cv.value)}
+            for cv in confidence_values
+        ]
         
+        # Sort by confidence and get top 5
+        sorted_confidences = sorted(
+            processed_confidences,
+            key=lambda x: x['confidence'],
+            reverse=True
+        )[:5]
+
+        # Find the confidence for the detected language
+        main_confidence = next(
+            (item['confidence'] for item in sorted_confidences 
+             if item['language'] == detected_lang.name),
+            0
+        )
+
+        # Database operations
         if check_db_connection():
             with db_lock:
+                # Save to history
                 history_doc = {
                     'timestamp': datetime.utcnow(),
                     'text_preview': text[:100] + '...' if len(text) > 100 else text,
@@ -90,13 +123,14 @@ def detect_language():
                 result = history_collection.insert_one(history_doc)
                 history_id = result.inserted_id
 
-                confidence_docs = [
-                    {
-                        'history_id': history_id,
-                        'language': lang.name,
-                        'confidence': float(conf.value)
-                    } for lang, conf in sorted_confidences
-                ]
+                # Save confidence scores
+                confidence_docs = [{
+                    'history_id': history_id,
+                    'language': item['language'],
+                    'confidence': item['confidence'],
+                    'rank': idx + 1
+                } for idx, item in enumerate(sorted_confidences)]
+                
                 confidence_collection.insert_many(confidence_docs)
 
                 # Update statistics
@@ -106,18 +140,27 @@ def detect_language():
                     upsert=True
                 )
 
+        # Prepare response
         response = {
             'detected_language': detected_lang.name,
             'confidence': float(main_confidence),
-            'confidences': [[lang.name, float(conf.value)] for lang, conf in sorted_confidences],
+            'confidences': [{
+                'language': item['language'],
+                'confidence': item['confidence'],
+                'rank': idx + 1
+            } for idx, item in enumerate(sorted_confidences)],
             'text_length': len(text),
             'processing_time': datetime.utcnow().timestamp()
         }
+        
         logger.info(f"Language detected: {detected_lang.name} (Confidence: {main_confidence:.2f})")
         return jsonify(response)
 
+    except ValueError as ve:
+        logger.error(f"Invalid JSON data: {str(ve)}")
+        return jsonify({'error': 'Invalid JSON data'}), 400
     except Exception as e:
-        logger.error(f"Error in detect_language: {str(e)}")
+        logger.error(f"Error in detect_language: {str(e)}", exc_info=True)
         return jsonify({'error': 'Internal server error'}), 500
 
 @app.route('/api/history', methods=['GET'])
@@ -225,7 +268,27 @@ def clear_history():
         return jsonify({'error': 'Failed to clear history'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=os.getenv('FLASK_DEBUG', 'False') == 'True', 
-            host='0.0.0.0', 
-            port=int(os.getenv('PORT', 5000)),
-            threaded=True)
+    debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+    port = int(os.getenv('PORT', 5000))
+    
+    print(f"\nStarting Language Detection API Server:")
+    print(f"• Port: {port}")
+    print(f"• Debug mode: {debug_mode}")
+    print(f"• MongoDB URI: {MONGO_URI}")
+    print("Press Ctrl+C to stop\n")
+    
+    try:
+        app.run(
+            debug=debug_mode,
+            host='0.0.0.0',
+            port=port,
+            threaded=True,
+            use_reloader=False
+        )
+    except KeyboardInterrupt:
+        logger.info("Server stopped by user")
+        print("\nServer stopped by user")
+    except Exception as e:
+        logger.error(f"Server failed to start: {str(e)}")
+        print(f"\nError starting server: {str(e)}")
+        sys.exit(1)
