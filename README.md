@@ -1,6 +1,6 @@
-<<<<<<< HEAD
-"# 2224030-OMKAR-KUMAR" 
-=======
+HEAD
+2224030-OMKAR-KUMAR 
+
 # 🌐 Advanced Language Detection App 
 
 A powerful multilingual text analysis tool built with Streamlit and Lingua
