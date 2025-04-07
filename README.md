@@ -1,4 +1,4 @@
-HEAD
+
 2224030-OMKAR-KUMAR 
 
 # 🌐 Advanced Language Detection App 
